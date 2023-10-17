@@ -22,24 +22,37 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"abyss-yjy.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.18.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":false,"nav":{"gitalk":{"order":-1}},"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":true}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="Abyss">
-<meta property="og:url" content="https://abyss-yjy.github.io/index.html">
+    <meta name="description" content="简介遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种随机全局搜索优化方法，它模拟了自然选择和遗传中发生的复制、交叉(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遗传算法(Genetic Algorithm)简介与实现">
+<meta property="og:url" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/index.html">
 <meta property="og:site_name" content="Abyss">
+<meta property="og:description" content="简介遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种随机全局搜索优化方法，它模拟了自然选择和遗传中发生的复制、交叉(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%BC%96%E7%A0%81.webp">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/32%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9F%93%E8%89%B2%E4%BD%93.jpg">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%A7%8D%E7%BE%A4.png">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E4%BA%A4%E5%8F%89.png">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8F%98%E5%BC%82.webp">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/flow_chart.png">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%B5%8B%E8%AF%95.png">
+<meta property="og:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%B5%8B%E8%AF%952.png">
+<meta property="article:published_time" content="2023-10-17T10:25:18.000Z">
+<meta property="article:modified_time" content="2023-10-17T10:29:58.713Z">
 <meta property="article:author" content="Abyss">
-<meta property="article:tag" content="AI; machine vision; Python; Java">
+<meta property="article:tag" content="算法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%BC%96%E7%A0%81.webp">
 
 
-<link rel="canonical" href="https://abyss-yjy.github.io/">
+<link rel="canonical" href="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/","path":"2023/10/17/遗传算法(Genetic Algorithm)简介与实现/","title":"遗传算法(Genetic Algorithm)简介与实现"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Abyss</title>
+<title>遗传算法(Genetic Algorithm)简介与实现 | Abyss</title>
   
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-HYZ7QSZ8BG","only_pageview":true}</script>
   <script src="/js/third-party/analytics/google-analytics.js"></script>
@@ -76,7 +89,7 @@
 
     <a href="/" class="brand" rel="start">
       <i class="logo-line"></i>
-      <h1 class="site-title">Abyss</h1>
+      <p class="site-title">Abyss</p>
       <i class="logo-line"></i>
     </a>
       <p class="site-subtitle" itemprop="description">Blog</p>
@@ -131,7 +144,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -144,6 +157,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%85%B3%E6%A6%82%E5%BF%B5"><span class="nav-number">2.</span> <span class="nav-text">相关概念</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BC%96%E7%A0%81"><span class="nav-number">2.1.</span> <span class="nav-text">编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A7%A3%E7%A0%81"><span class="nav-number">2.2.</span> <span class="nav-text">解码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9F%BA%E5%9B%A0%E4%B8%8E%E6%9F%93%E8%89%B2%E4%BD%93"><span class="nav-number">2.3.</span> <span class="nav-text">基因与染色体</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A7%8D%E7%BE%A4"><span class="nav-number">2.4.</span> <span class="nav-text">种群</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%82%E5%BA%94%E5%BA%A6%E5%87%BD%E6%95%B0"><span class="nav-number">2.5.</span> <span class="nav-text">适应度函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%89%E6%8B%A9"><span class="nav-number">2.6.</span> <span class="nav-text">选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89"><span class="nav-number">2.7.</span> <span class="nav-text">交叉</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E5%BC%82"><span class="nav-number">2.8.</span> <span class="nav-text">变异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%8D%E5%88%B6"><span class="nav-number">2.9.</span> <span class="nav-text">复制</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E6%B5%81%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">算法流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E7%BB%88%E6%AD%A2%E6%9D%A1%E4%BB%B6"><span class="nav-number">3.1.</span> <span class="nav-text">算法终止条件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90"><span class="nav-number">4.</span> <span class="nav-text">算法分析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E4%B8%8E%E4%BC%A0%E7%BB%9F%E7%AE%97%E6%B3%95%E7%9A%84%E5%B7%AE%E5%BC%82"><span class="nav-number">4.1.</span> <span class="nav-text">遗传算法与传统算法的差异</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9"><span class="nav-number">4.2.</span> <span class="nav-text">遗传算法的优缺点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E7%82%B9"><span class="nav-number">4.2.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BC%BA%E7%82%B9"><span class="nav-number">4.2.2.</span> <span class="nav-text">缺点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">5.</span> <span class="nav-text">遗传算法的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%A9%E7%94%A8%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95%E8%A7%A3%E5%86%B3%E6%97%85%E8%A1%8C%E5%95%86-Travelling-Salesman-Problem-%E7%AE%80%E8%AE%B0TSP-%E9%97%AE%E9%A2%98"><span class="nav-number">5.1.</span> <span class="nav-text">利用遗传算法解决旅行商(Travelling Salesman Problem, 简记TSP)问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%AE%9A%E4%B9%89"><span class="nav-number">5.1.1.</span> <span class="nav-text">问题定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E8%AE%BE%E8%AE%A1"><span class="nav-number">5.1.2.</span> <span class="nav-text">算法设计</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E6%B5%81%E7%A8%8B"><span class="nav-number">5.1.3.</span> <span class="nav-text">程序流程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E8%BF%90%E8%A1%8C%E4%BB%A5%E5%8F%8A%E6%B5%8B%E8%AF%95"><span class="nav-number">5.1.4.</span> <span class="nav-text">代码运行以及测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%BB%93%E8%AE%BA"><span class="nav-number">5.1.5.</span> <span class="nav-text">结论</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%99%84%E4%BB%B6"><span class="nav-number">5.2.</span> <span class="nav-text">附件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%A8%8B%E5%BA%8F%E4%BB%A3%E7%A0%81"><span class="nav-number">5.2.1.</span> <span class="nav-text">程序代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">5.2.2.</span> <span class="nav-text">数据集</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -199,16 +213,17 @@
 
     </div>
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -222,13 +237,13 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Abyss">
+      <meta itemprop="name" content="遗传算法(Genetic Algorithm)简介与实现 | Abyss">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/" class="post-title-link" itemprop="url">遗传算法(Genetic Algorithm)简介与实现</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          遗传算法(Genetic Algorithm)简介与实现
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -243,6 +258,13 @@
     </span>
 
   
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
 </div>
 
         </div>
@@ -251,8 +273,7 @@
     
     
     
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种<strong>随机全局搜索优化</strong>方法，它模拟了自然选择和遗传中发生的<strong>复制</strong>、<strong>交叉</strong>(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一群最适应环境的个体（Individual），从而求得问题的优质解。</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种<strong>随机全局搜索优化</strong>方法，它模拟了自然选择和遗传中发生的<strong>复制</strong>、<strong>交叉</strong>(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一群最适应环境的个体（Individual），从而求得问题的优质解。</p>
 <p>其主要特点是直接对结构对象进行操作，不存在求导和函数连续性的限定；具有内在的隐并行性和更好的全局寻优能力；采用概率化的寻优方法，不需要确定的规则就能自动获取和指导优化的搜索空间，自适应地调整搜索方向。</p>
 <p>遗传算法以一种群体中的所有个体为对象，并利用随机化技术指导对一个被编码的参数空间进行高效搜索。其中，选择、交叉和变异构成了遗传算法的遗传操作；参数编码、初始群体的设定、适应度函数的设计、遗传操作设计、控制参数设定五个要素组成了遗传算法的核心内容。</p>
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>解空间中的解在遗传算法中的表示形式。从问题的解到基因型的映射称为编码，即把一个问题的可行解从其解空间转换到遗传算法的搜索空间的转换方法。遗传算法在进行搜索之前先将解空间的解表示成遗传算法的基因型串(也就是染色体)结构数据，这些串结构数据的不同组合就构成了不同的点。</p>
@@ -402,7 +423,6 @@
 <h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">北京	116.46 39.92</span><br><span class="line">天津 117.2 39.13</span><br><span class="line">上海 121.48 31.22</span><br><span class="line">重庆 106.54 29.59</span><br><span class="line">拉萨	91.11 29.97</span><br><span class="line">乌鲁木齐 87.68 43.77</span><br><span class="line">银川 106.27 38.47</span><br><span class="line">呼和浩特 111.65 40.82</span><br><span class="line">南宁	108.33 22.84</span><br><span class="line">哈尔滨 126.63 45.75</span><br><span class="line">长春 125.35 43.88</span><br><span class="line">沈阳 123.38 41.8</span><br><span class="line">石家庄 114.48 38.03</span><br><span class="line">太原	112.53 37.87</span><br><span class="line">西宁 101.74 36.56</span><br><span class="line">济南	117 36.65</span><br><span class="line">郑州	113.6 34.76</span><br><span class="line">南京 118.78 32.04</span><br><span class="line">合肥 117.27 31.86</span><br><span class="line">杭州 120.19 30.26</span><br><span class="line">福州 119.3 26.08</span><br><span class="line">南昌	115.89 28.68</span><br><span class="line">长沙	113 28.21</span><br><span class="line">武汉	114.31 30.52</span><br><span class="line">广州	113.23 23.16</span><br><span class="line">台北	121.5 25.05</span><br><span class="line">海口	110.35 20.02</span><br><span class="line">兰州 103.73 36.03</span><br><span class="line">西安 108.95 34.27</span><br><span class="line">成都 104.06 30.67</span><br><span class="line">贵阳 106.71 26.57</span><br><span class="line">昆明	102.73 25.04</span><br><span class="line">香港	114.1 22.2</span><br><span class="line">澳门 113.33 22.13</span><br></pre></td></tr></table></figure>
 
 
-      
     </div>
 
     
@@ -410,175 +430,56 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
+          <div class="reward-container">
+  <div>请我一杯咖啡吧！</div>
+  <button>
+    赞赏
+  </button>
+  <div class="post-reward">
+      <div>
+        <img src="/images/WeChatpay.png" alt="Abyss 微信">
+        <span>微信</span>
+      </div>
+      <div>
+        <img src="/images/Alipay.jpg" alt="Abyss 支付宝">
+        <span>支付宝</span>
+      </div>
+
+  </div>
 </div>
 
+          
 
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://abyss-yjy.github.io/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="Abyss">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Abyss">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Abyss">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/" class="post-title-link" itemprop="url">国科大成都应用计算所考研经验贴</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2023-09-10 16:29:18 / 修改时间：18:55:42" itemprop="dateCreated datePublished" datetime="2023-09-10T16:29:18+08:00">2023-09-10</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>首先，来看下我的初试成绩：</p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%88%9D%E8%AF%95%E6%88%90%E7%BB%A9.jpg" alt="初试成绩" loading="lazy"></p>
-<p>11408考309分属于是非常低的分了，我预估成绩原来在350左右，考的这么差有主观原因，也有客观原因。但最后还是上岸了：</p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%BD%95%E5%8F%96%E6%83%85%E5%86%B5.png" alt="录取情况" loading="lazy"></p>
-<p>初试排名第10&#x2F;31，复试排名第9&#x2F;25。</p>
-<p>首先说一下成都所看中的能力（优先级由高到底）：项目，论文竞赛，本科专业，初试成绩，本科学校。</p>
-<p>因此劝退一波人：无项目的人，跨考者（今年刷5个，330多的高分跨考被刷了），当然我这只对大部分人，你是小部分的强者完全可以忽视这些！</p>
-<p>我的优势为我有许多项目（你可以从我的博客和gitee上看出），另外我有一个软著。所以，我这个经验贴的受众其实是那些有着丰富的项目经验的但考试能力较差的人，其他人建议只参考参考。</p>
-<h1 id="择校"><a href="#择校" class="headerlink" title="择校"></a>择校</h1><p>关于择校我就一句话：“<strong>选择大于努力</strong>”。</p>
-<p>谁都想上985, 211。但是盲目的头铁换来的只会是续费一年的备考。各位量力而行，该跳车就跳车。</p>
-<p>我备考的时候首先就是深圳大学，号称“清北深”，毕业就进腾讯。结果导致这几年的分数爆炸。在暑假期间，我果断跳车选择了南方科技大学。</p>
-<p>但是在9月份南方科技大学的招生简章出来后，我果断跳车，因为只招9个人，英语要求还挺高。</p>
-<p>后来看到了国科大，了解了一下各个研究所，直接选择了成都应用研究所，原因很简单：</p>
+<div class="post-copyright">
 <ul>
-<li>分低，只有国家线的复试线。</li>
-<li>复试要求我的项目完全够。</li>
-<li>成都地段也算不错。</li>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>Abyss
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/" title="遗传算法(Genetic Algorithm)简介与实现">https://abyss-yjy.github.io/2023/10/17/遗传算法(Genetic Algorithm)简介与实现/</a>
+  </li>
+  <li class="post-copyright-license">
+      <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
-<p>其实，以当时的我的感觉来看，我考成都计算所是有点溢价的，因为我预估为350左右，远远超过了成都所需要的分数，甚至在往年能够当前三名。不过，从现在来看，我只能说，分刚刚好，一分没浪费，跳车<strong>好跳</strong>！</p>
-<h1 id="初试（不重要，过线就行）"><a href="#初试（不重要，过线就行）" class="headerlink" title="初试（不重要，过线就行）"></a>初试（不重要，过线就行）</h1><h2 id="英语和政治"><a href="#英语和政治" class="headerlink" title="英语和政治"></a>英语和政治</h2><p>呃呃，我英语42，政治48，就不误导大家了，我虽然过了英语四六级，但是考的太差，差点没过国家线。我总结的原因有以下几点：</p>
-<ol>
-<li>我英语政治确实差，我英语四级考了3次才考到502，六级考了2次才452；另外我政治没做1000题，看课也很潦草，不过肖八，肖四确实认真背了。</li>
-<li>另外就是考试那天中奖了——新冠，头发烧脑袋不清醒不说，原本就潦草的字更潦草了。</li>
-<li>再加上国科大所有的所都属于北京，北京是极旱区，改卷巨压分。盲猜我英语政治主观题不超过20分。</li>
-</ol>
-<p>当然，也可做下反面教材：</p>
-<p>我英语3月开始记单词，直到最后记了两轮半（一坤轮），英语真题暑假开始做的，正确率2010年前的很低，后面好点，其中穿插看了唐迟的阅读还有王江涛的作文。</p>
-<p>政治我是暑假开始看课的，看的肖秀荣的基础配套（我的评价是烂），暑假结束开始看徐涛的强化，《1000题》只做了不到200题，最后背的肖八肖四。其实肖秀荣都押到真题了，我都写出来了，估计是字写得太难看了分才这么低。</p>
-<p>最后我还是挺庆幸的，过线了！</p>
-<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><p>数学是我投入最多时间的一门课，从3月初到12月考前，每天都是雷打不动的一整个上午的时间（8：00~11：20），就算这样，我也有许多决策失误导致我险些没学完，最终就算学完了，基础也不是很牢固。</p>
-<p>我高等数学全程跟的张宇，他讲的非常有条理，而且课上一点小小的冷笑话也使得课堂没那么犯困，不过我做的题没有选择张宇，张宇的题除了书上的我只做了张宇八套卷和张宇四套卷，因为张宇的题偏难，在时间有限的情况下还是优先跟真题差不多的题，比如李林的880。</p>
-<p>我线代基础跟的张宇，强化跟的李永乐，因为张宇很有条理，啥都不懂的情况下跟张宇学的更容易，李永乐最大的问题就是题大部分都是真题，讲的时候会涉及到后面的知识点，因此讲的非常混乱，我选择强化跟李永乐也是听他们说的线代之王，想领教一下！</p>
-<p>我概率论全程张宇，选张宇没有选余炳森的原因也很简单，就是我说的决策失误，没时间学了，在赶进度。而张宇的书很薄，余炳森的巨厚。</p>
-<p>然后就是我做的习题集了，除了书本上的习题之外，我在基础阶段做了660，强化阶段做了330，模拟卷做了张八，张六，李林八，李林四，李艳芳三套卷。当然真题也是必做的。</p>
-<p>我的时间点：</p>
-<ol>
-<li>暑假前，过完数学基础，除书上习题，额外做了660</li>
-<li>暑假期间完成数学强化，除书上习题，额外做了330</li>
-<li>9月份-10月份做真题</li>
-<li>10月份到11月份做模拟卷</li>
-<li>11月份到考前，刷错题，二刷真题与模拟卷</li>
-</ol>
-<p>我的决策失误就是一直在跟张宇的新课，到后期我就是在等他出课，他高数基础是在暑假快开始结束的，可是我还没开始线代概率，所以我在赶进度，学的很粗糙，这个问题到我强化线代概率就爆炸了，连锁反应我线代概率学的不咋滴。所以我数学107错的全部都是线代概率，特别是选填。</p>
-<h2 id="408"><a href="#408" class="headerlink" title="408"></a>408</h2><p>我专业课408也是雷打不动一个下午，我的顺序是数据结构，计算机组成原理，操作系统，计算机网络。这些没啥好说的，直接无脑跟王道。</p>
-<p>我的节奏就是：</p>
-<p>暑假前基础：</p>
-<ol>
-<li>看一小节书</li>
-<li>看一小节基础课</li>
-<li>做课后选择题</li>
-</ol>
-<p>暑假强化：</p>
-<ol>
-<li>看一章书</li>
-<li>再看对应强化课</li>
-<li>没看懂的再看基础课，看懂了直接进行下一步</li>
-<li>做选择题错题</li>
-<li>做大题（真题）</li>
-</ol>
-<p>然后就是真题阶段，真题刷3遍都不为过，王道书至少看2遍。模拟卷和教材时间充裕可做。</p>
-<p>接下来具体聊聊各科目</p>
-<p>数据结构：</p>
-<p>除了基本节奏之外，你最好对C语言比较熟悉，有了良好的语言基础，你记伪代码会容易很多。同时每学一个数据结构定义或者算法，一定要在纸上默一下。至于严的数据结构教材和LeetCode，我只能说有时间就搞，但大部分性价比不高，除非你复试有机试。</p>
-<p>计算机组成原理：</p>
-<p>计算机组成原理比较难，学的时候非常抽象，我在数据的表示那一章到最后都没学懂，但事实上只考一道选择题和大题的一小问。另外就是CPU，我直到强化的时候看到了咸鱼做的骚图（王道做强化的一个图），我才恍然大悟。我只能说，前期没学懂很正常，但是你都记住，但后面会有一个顿悟的过程的。另外，王道的强化课一定要看，这是你顿悟的引子。</p>
-<p>操作系统：</p>
-<p>操作系统计组一样，但没有那么底层，所以学的比较轻松，一些算法啥的计算机人应该问题不大，考试考的主要是概念，大题固定同步与互斥，一道计算。类比一下计组一下就行。同时，王道强化课一定要看。</p>
-<p>计算机网络：</p>
-<p>计网是王道楼楼讲的，讲的依托答辩，但是没办法，基础课好好听，强化还是别听了，她讲的强化不如自学。计网主要是一些杂的小知识点，比较难的就是关于时间速率的计算了，但都是套路题。</p>
-<p>最后，真题，王道书多看，把里面的题做懂了，最低100分以上。</p>
-<h1 id="复试（非常重要，直接决定你的最终结果）"><a href="#复试（非常重要，直接决定你的最终结果）" class="headerlink" title="复试（非常重要，直接决定你的最终结果）"></a>复试（非常重要，直接决定你的最终结果）</h1><h2 id="专业面试"><a href="#专业面试" class="headerlink" title="专业面试"></a>专业面试</h2><p>复试我直接emo住了，我们是疫情以来第一次线下，我借鉴王道论坛和学长的经验贴，最后得出来的结论是卵用没有。所有经验贴说问了啥啥问题给你罗列出来，然而根本没有说到关键点，我背他们的题纯属浪费时间，同样，看到这的学弟学妹们，背面我的题啥用也没有，但是学长告诉你们一个关键点，你们就有了方向。</p>
-<p>我不知道其他组的，但是图像组，没有一个数学类问题或者专业问题，全部问你项目，特别是与他们的方向契合的项目，他们会问的很深，直到你不会为止，所以你不会很正常，你只要不要在很基础的地方不会分就不会低。</p>
-<p>我被问麻了，我的技术栈为Java，项目大部分都是springboot，他们鸟都不鸟这方面，他们只关注人工智能的项目，然后我的简历上写了了解AI，他们疯狂问我深度学习，还好我之前自学过吴恩达的课程，基础的东西还是答上来了，不过后面全程道歉，我那天以为我寄了的。</p>
-<p>另外一个碰都不能碰的话题，千万别说你要考博士，他们一听到你读博就来劲了，对你的要求会提高很多，当然你表现的好的话或许分更高，那天我碰了（耍小聪明把自己坑了），然后就被拷打了。</p>
-<p>我现在回想复试，老师的那些话仍然存在我的脑海，特别是：</p>
-<ol>
-<li>“你基础太差，我专业问题都没法问！”，这句话是问我深度学习我道歉不会之后说的。</li>
-<li>“你一个物联网的，干着计算机的项目，做着社交网络的毕设，选的又是图像识别方向，你还想读博，读博很幸苦的，你现在随图像识别感兴趣，别等会读完硕士说我博士要换方向那可就麻烦了…….”，这句话是他看见我要读博后说的话，后面还跟我分析了当前深度学习领域的现状啥的。我就像个呆瓜一样杵在那里只能嗯嗯嗯。</li>
-</ol>
-<h2 id="英语面试"><a href="#英语面试" class="headerlink" title="英语面试"></a>英语面试</h2><p>我英语很垃圾，所以我问了许多学长，然后他们都说随便搞搞就行，于是我就傻乎乎地放松警惕了，而且我当时认为我专业课寄了，就有点摆烂了。</p>
-<p>不得不说，主面试官是位小姐姐，笑的很温暖，可惜我当时慌得不行，无暇感受。。。</p>
-<p>开局自我介绍，提前准备直接开背，然后问你问题，我回答的就是那种单词，连不成句子的那种，最后就是文献翻译，直接傻眼，节选的专业文献，没上下文，很多专有名词和缩写，我一个单词一个单词翻译的。</p>
-<p>那天面完直接瘫在酒店，不知道以后怎么办，万念俱灰，但又有一丝希望奇迹发生的期待，然后之前准备在成都玩几天的想法都没了，直接灰溜溜地润回学校了，失眠四天后，奇迹竟然发生了，上岸了，诶，回想起来，复试是真痛苦。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回想过去一年，我认为我最牛的是我的择校，好跳，如果继续深大，我还是能进复试，但估计是平均分之下，上岸难说。</p>
-<p>其次就是这年太艰难险阻的，疫情期间学的还要防备新冠，学校图书馆动不动就关，最搞的是考试前疫情开放，好巧不巧，考试那天得新冠发高烧，第一天靠感冒灵撑过去的，第二天要做题只好连吃两颗布洛芬。</p>
-<p>复试又是第一年线下，往年学长学姐的经验贴不大好用，我准备复试时的完全没方向，甚至方向错误，去背那些专业课问题，基础课问题，结果最后一个没问，全是项目。</p>
-<p>复试这几天来，我没睡过一天的好觉，做梦都是我在面试被拷打或者成绩出来时的场景。</p>
-<p>不过最终还是成功上岸了！！！</p>
-<p>另外分享一下我的兄弟们，我们当时三人组在图书馆复习（准确来说四个人，但另一个不跟我们坐一起），我考上了果壳，另一个卷王409考上科软，还有一个南航第10名进复试可惜差两分拟录取，那个不和我们坐一起的卷王410+考上河海大学</p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%BD%95%E5%8F%96%E9%80%9A%E7%9F%A5%E4%B9%A6%E9%82%AE%E4%BB%B6.jpg" alt="录取通知书邮件" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%BD%95%E5%8F%96%E9%80%9A%E7%9F%A5%E4%B9%A6.jpg" alt="录取通知书" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E9%99%A2%E5%A3%AB%E5%AF%84%E8%AF%AD%E5%B0%81%E9%9D%A2.jpg" alt="院士寄语封面" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E9%99%A2%E5%A3%AB%E5%AF%84%E8%AF%AD%E5%86%85%E5%AE%B9.jpg" alt="院士寄语内容" loading="lazy"></p>
-<h1 id="相关附件"><a href="#相关附件" class="headerlink" title="相关附件"></a>相关附件</h1><p>右侧导航栏考研复试ppt模板：<a href="/download/%E5%8F%B3%E4%BE%A7%E5%AF%BC%E8%88%AA%E6%A0%8F%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95ppt%E6%A8%A1%E6%9D%BF.pptx" title="考研复试ppt模板">点击下载</a></p>
-<h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>最近有很多人来咨询我复试问题，我也都一一回复了，就有个问题忍不住想吐槽一下：</p>
-<p>首先我想问你们，国科大虽然是双非但也不是很差吧，为啥一群小可爱来问我的时候，我问啥他们啥都没有(项目，论文，竞赛)，甚至还有跨考专科的，然后再问为啥选择国科大，回答都是因为分低……</p>
-<p>我说自己啥本事掂量掂量好不，项目、论文、竞赛、初试成绩总得占一样吧，啥都没有也来凑热闹……最无语的是让他慎重考虑还不听，说自己咋了咋了，说的我在故意劝退一样，我都上岸了劝退你们干嘛，忠言逆耳啊。</p>
-<p>家人们，谁懂啊，无语死了。</p>
+</div>
 
-      
-    </div>
+          <div class="post-tags">
+              <a href="/tags/%E7%AE%97%E6%B3%95/" rel="tag"># 算法</a>
+          </div>
 
-    
-    
-    
+        
 
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/" rel="prev" title="国科大成都应用计算所考研经验贴">
+                  <i class="fa fa-angle-left"></i> 国科大成都应用计算所考研经验贴
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
@@ -587,6 +488,8 @@
 
 
 
+
+    <div class="comments gitalk-container"></div>
 </div>
   </main>
 
@@ -670,11 +573,11 @@
 
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/quicklink/2.3.0/quicklink.umd.js" integrity="sha256-yvJQOINiH9fWemHn0vCA5lsHWJaHs6/ZmO+1Ft04SvM=" crossorigin="anonymous"></script>
-  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://abyss-yjy.github.io/"}</script>
+  <script class="next-config" data-name="quicklink" type="application/json">{"enable":true,"home":true,"archive":true,"delay":true,"timeout":3000,"priority":true,"url":"https://abyss-yjy.github.io/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/"}</script>
   <script src="/js/third-party/quicklink.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"abyss-yjy","repo":"blog-comment","client_id":"3542177399015a3a90e9","client_secret":"3db3afd72650e58f25fbf3fc221bbbb69f3c50ab","admin_user":"abyss-yjy","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-Hans","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"d1546d731a9f30cc80127d57142a482b"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"abyss-yjy","repo":"blog-comment","client_id":"3542177399015a3a90e9","client_secret":"3db3afd72650e58f25fbf3fc221bbbb69f3c50ab","admin_user":"abyss-yjy","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":"zh-Hans","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"73111929421f5fbbd1a9821ceb0e19b4"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>
