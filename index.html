@@ -93,7 +93,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">2</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -162,9 +162,15 @@
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
-      <div class="site-state-item site-state-tags">
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -239,7 +245,16 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-10-17 18:25:18 / 修改时间：18:29:58" itemprop="dateCreated datePublished" datetime="2023-10-17T18:25:18+08:00">2023-10-17</time>
+      <time title="创建时间：2023-10-17 18:25:18 / 修改时间：18:48:14" itemprop="dateCreated datePublished" datetime="2023-10-17T18:25:18+08:00">2023-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%AE%97%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">算法</span></a>
+        </span>
     </span>
 
   
@@ -255,153 +270,14 @@
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种<strong>随机全局搜索优化</strong>方法，它模拟了自然选择和遗传中发生的<strong>复制</strong>、<strong>交叉</strong>(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一群最适应环境的个体（Individual），从而求得问题的优质解。</p>
 <p>其主要特点是直接对结构对象进行操作，不存在求导和函数连续性的限定；具有内在的隐并行性和更好的全局寻优能力；采用概率化的寻优方法，不需要确定的规则就能自动获取和指导优化的搜索空间，自适应地调整搜索方向。</p>
 <p>遗传算法以一种群体中的所有个体为对象，并利用随机化技术指导对一个被编码的参数空间进行高效搜索。其中，选择、交叉和变异构成了遗传算法的遗传操作；参数编码、初始群体的设定、适应度函数的设计、遗传操作设计、控制参数设定五个要素组成了遗传算法的核心内容。</p>
-<h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>解空间中的解在遗传算法中的表示形式。从问题的解到基因型的映射称为编码，即把一个问题的可行解从其解空间转换到遗传算法的搜索空间的转换方法。遗传算法在进行搜索之前先将解空间的解表示成遗传算法的基因型串(也就是染色体)结构数据，这些串结构数据的不同组合就构成了不同的点。</p>
-<p>常见的编码方法有二进制编码：即组成染色体的基因序列是由二进制数表示，具有编码解码简单易用，交叉变异易于程序实现等特点。</p>
-<p>设某一参数的取值范围为$[U1,U2]$，我们用长度为$k$的二进制编码符号来表示该参数，则它总共产生$2^k$种不同的编码，可使参数编码时的对应关系：</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%BC%96%E7%A0%81.webp" alt="img" loading="lazy"></p>
-<p>其中，$\delta&#x3D;\frac{U_2-U_1}{2^k-1}$</p>
-<h3 id="解码"><a href="#解码" class="headerlink" title="解码"></a>解码</h3><p>遗传算法染色体向问题解的转换。假设某一个体的编码，则对应的解码公式为：<br>$$<br>X&#x3D;U_1+(\sum\limits_{i&#x3D;1}^k b_i\cdot2^{i-1})\cdot\frac{U_2-U_1}{2^k-1}<br>$$<br>例如，设有参数$X\in[2,4]$，现用5位二进制编码对$X$进行编码，得$2^5&#x3D;32$个二进制串（染色体）：</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/32%E4%B8%AA%E4%BA%8C%E8%BF%9B%E5%88%B6%E6%9F%93%E8%89%B2%E4%BD%93.jpg" alt="img" loading="lazy"></p>
-<p>对于任一个二进制中，只要带入上面公式，就可以得到对应的解码，如$x_{22}&#x3D;10101$，它对应的十进制为$\sum\limits_{i&#x3D;1}^5 b_i\cdot2^{i-1}&#x3D;21$，则对应参数X的值为$X&#x3D;U_1+(\sum\limits_{i&#x3D;1}^k b_i\cdot2^{i-1})\cdot\frac{U_2-U_1}{2^k-1}&#x3D;2+21\times\frac{4-2}{2-1}&#x3D;3.3548$</p>
-<h3 id="基因与染色体"><a href="#基因与染色体" class="headerlink" title="基因与染色体"></a>基因与染色体</h3><p>在遗传算法中，我们首先需要将要解决的问题映射成一个数学问题，也就是所谓的“数学建模”，那么这个问题的一个可行解即被称为一条“染色体”。一个可行解一般由多个元素构成，那么这每一个元素就被称为染色体上的一个“基因”。</p>
-<p>比如说，对于如下函数而言，[1,2,3]、[1,3,2]、[3,2,1]均是这个函数的可行解（代进去成立即为可行解），那么这些可行解在遗传算法中均被称为染色体。<br>$$<br>3x+4y+5z&lt;100<br>$$<br>这些可行解一共有三个元素构成，那么在遗传算法中，每个元素就被称为组成染色体的一个基因。</p>
-<h3 id="种群"><a href="#种群" class="headerlink" title="种群"></a>种群</h3><p>遗传算法保持大量的个体——针对当前问题的可行解集合。由于每个个体都由染色体表示，因此这些种族的个体可以看作是染色体集合：</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E7%A7%8D%E7%BE%A4.png" alt="候选解集合" loading="lazy"></p>
-<h3 id="适应度函数"><a href="#适应度函数" class="headerlink" title="适应度函数"></a>适应度函数</h3><p>在自然界中，似乎存在着一个上帝，它能够选择出每一代中比较优良的个体，而淘汰一些环境适应度较差的个人。那么在遗传算法中，如何衡量染色体的优劣呢？这就是由适应度函数完成的。适应度函数在遗传算法中扮演者这个“上帝”的角色。</p>
-<p>遗传算法在运行的过程中会进行N次迭代，每次迭代都会生成若干条染色体。适应度函数会给本次迭代中生成的所有染色体打个分，来评判这些染色体的适应度，然后将适应度较低的染色体淘汰掉，只保留适应度较高的染色体，从而经过若干次迭代后染色体的质量将越来越优良。</p>
-<h3 id="选择"><a href="#选择" class="headerlink" title="选择"></a>选择</h3><p>优胜劣汰，自然选择。建立在群体中个体的适应度评估基础上，将适应度值高的个体直接遗传到下一代或者通过交叉算子和变异算子产生新个体后再遗传到下一代。</p>
-<p>最常用的方法是轮盘赌法：若设种群数为$M$，个体$i$的适应度为$f_i$，则个体<em>i</em>被选取的概率为：<br>$$<br>P_i &#x3D; \frac{f_i}{\sum\limits_{k&#x3D;1}^M f_k}<br>$$<br>当个体选择的概率给定后，产生[0,1]之间均匀随机数来决定哪个个体参加交配。若个体的选择概率大，则有机会被多次选中，那么它的遗传基因就会在种群中扩大；若个体的选择概率小，则被淘汰的可能性会大。</p>
-<h3 id="交叉"><a href="#交叉" class="headerlink" title="交叉"></a>交叉</h3><p>遗传算法每一次迭代都会生成N条染色体，在遗传算法中，这每一次迭代就被称为一次“进化”。那么，每次进化新生成的染色体是如何而来的呢？——答案就是“交叉”。</p>
-<p>交叉的过程需要从上一代的染色体中寻找两条染色体，一条是父亲，一条是母亲。然后将这两条染色体的某一个位置切断，并拼接在一起，从而生成一条新的染色体。这条新染色体上即包含了一定数量的父亲的基因，也包含了一定数量的母亲的基因。</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E4%BA%A4%E5%8F%89.png" alt="交叉" loading="lazy"></p>
-<h3 id="变异"><a href="#变异" class="headerlink" title="变异"></a>变异</h3><p>交叉能保证每次进化留下优良的基因，但它仅仅是对原有的结果集进行选择，基因还是那么几个，只不过交换了他们的组合顺序。这只能保证经过N次进化后，计算结果更接近于局部最优解，而永远没办法达到全局最优解，为了解决这一个问题，我们需要引入变异。</p>
-<p>变异很好理解。当我们通过交叉生成了一条新的染色体后，需要在新染色体上随机选择若干个基因，然后随机修改基因的值，从而给现有的染色体引入了新的基因，突破了当前搜索的限制，更有利于算法寻找到全局最优解。</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E5%8F%98%E5%BC%82.webp" alt="img" loading="lazy"></p>
-<h3 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h3><p>每次进化中，为了保留上一代优良的染色体，需要将上一代中适应度最高的几条染色体直接原封不动地复制给下一代。</p>
-<p>假设每次进化都需生成$N$条染色体，那么每次进化中，通过交叉方式需要生成$N-M$条染色体，剩余的M条染色体通过复制上一代适应度最高的$M$条染色体而来。</p>
-<h2 id="算法流程"><a href="#算法流程" class="headerlink" title="算法流程"></a>算法流程</h2><p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/flow_chart.png" alt="flow_chart" loading="lazy"></p>
-<p>需要注意的是遗传算法有4个运行参数需要预先设定，即</p>
-<p>$M$：种群大小</p>
-<p>$T$：遗传算法的终止进化代数</p>
-<p>$P_c$：交叉概率，一般为0.4~0.99</p>
-<p>$P_m$：变异概率，一般取0.001~0.1</p>
-<h3 id="算法终止条件"><a href="#算法终止条件" class="headerlink" title="算法终止条件"></a>算法终止条件</h3><p>在确定算法是否可以停止时，可能有多种条件可以用于检查。两种最常用的停止条件是：</p>
-<ol>
-<li>已达到最大世代数。这也用于限制算法消耗的运行时间和计算资源。</li>
-<li>在过去的几代中，个体没有明显的改进。这可以通过存储每一代获得的最佳适应度值，然后将当前的最佳值与预定的几代之前获得的最佳值进行比较来实现。如果差异小于某个阈值，则算法可以停止。</li>
-</ol>
-<p>其他停止条件：</p>
-<ol>
-<li>自算法过程开始以来已经超过预定时间。</li>
-<li>消耗了一定的成本或预算，例如CPU时间和&#x2F;或内存。</li>
-<li>最好的解已接管了一部分种群，该部分大于预设的阈值。</li>
-</ol>
-<h2 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h2><h3 id="遗传算法与传统算法的差异"><a href="#遗传算法与传统算法的差异" class="headerlink" title="遗传算法与传统算法的差异"></a>遗传算法与传统算法的差异</h3><p>遗传算法与传统的搜索和优化算法（例如基于梯度的算法）之间存在一些重要区别。</p>
-<ol>
-<li>基于种群</li>
-</ol>
-<p>​	遗传搜索是针对一组候选解决方案（individuals）而不是单个候选方案进行的。在搜索过程中，算法会保留当前一代的一组个体。遗传算法的每次迭代都会创建下一代个体。相反，大多数其他搜索算法都维持单个解决方案，并迭代地修改它以寻找最佳解决方案。例如，梯度下降算法沿当前最陡下降方向迭代移动当前解，梯度方向为给定函数的梯度的负数。</p>
-<ol start="2">
-<li>遗传表征</li>
-</ol>
-<p>​	遗传算法不是直接在候选解上运行，而是在它们的表示（或编码）（通常称为染色体，chromosomes）上运行。染色体能够利用交叉和突变的遗传操作。使用遗传表示的弊端是使搜索过程与原始问题域分离。遗传算法不知道染色体代表什么，也不试图解释它们。</p>
-<ol start="3">
-<li>适应度函数</li>
-</ol>
-<p>​	适应度函数表示要解决的问题。遗传算法的目的是找到利用适应度函数求得的得分最高的个体。与许多传统的搜索算法不同，遗传算法仅考虑利用适应度函数获得的值，而不依赖于导数或任何其他信息。这使它们适合处理难以或不可能在数学上求导的函数。</p>
-<ol start="4">
-<li>概率行为</li>
-</ol>
-<p>​	尽管许多传统算法本质上是确定性的，但是遗传算法用来从一代产生下一代的规则是概率性的。例如，选择的个体将被用来创建下一代，选择个体的概率随着个体的适应度得分增加，但仍有可能选择一个得分较低的个体。尽管此过程具有概率性，但基于遗传算法的搜索并不是随机的；取而代之的是，它利用随机将搜索引向搜索空间中有更好机会改善结果的区域。</p>
-<h3 id="遗传算法的优缺点"><a href="#遗传算法的优缺点" class="headerlink" title="遗传算法的优缺点"></a>遗传算法的优缺点</h3><h4 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h4><ol>
-<li>全局最优</li>
-</ol>
-<p>​	在许多情况下，优化问题具有局部最大值和最小值。这些值代表的解比周围的解要好，但并不是最佳的解。大多数传统的搜索和优化算法，尤其是基于梯度的搜索和优化算法，很容易陷入局部最大值，而不是找到全局最大值。遗传算法更有可能找到全局最大值。这是由于使用了一组候选解，而不是一个候选解，而且在许多情况下，交叉和变异操作将导致候选解与之前的解有所不同。只要设法维持种群的多样性并避免过早趋同（premature convergence），就可能产生全局最优解。</p>
-<ol start="2">
-<li>处理复杂问题</li>
-</ol>
-<p>​	由于遗传算法仅需要每个个体的适应度函数得分，而与适应度函数的其他方面（例如导数）无关，因此它们可用于解决具有复杂数学表示、难以或无法求导的函数问题。</p>
-<ol start="3">
-<li>处理缺乏数学表达的问题</li>
-</ol>
-<p>​	遗传算法可用于完全缺乏数学表示的问题。这是由于适应度是人为设计的。例如，想要找到最有吸引力颜色组合，可以尝试不同的颜色组合，并要求用户评估这些组合的吸引力。使用基于意见的得分作为适应度函数应用遗传算法搜索最佳得分组合。即使适应度函数缺乏数学表示，并且无法直接从给定的颜色组合计算分数，但仍可以运行遗传算法。只要能够比较两个个体并确定其中哪个更好，遗传算法甚至可以处理无法获得每个个体适应度的情况。例如，利用机器学习算法在模拟比赛中驾驶汽车，然后利用基于遗传算法的搜索可以通过让机器学习算法的不同版本相互竞争来确定哪个版本更好，从而优化和调整机器学习算法。</p>
-<ol start="4">
-<li>耐噪音</li>
-</ol>
-<p>​	一些问题中可能存在噪声现象。这意味着，即使对于相似的输入值，每次得到的输出值也可能有所不同。例如，当从传感器产生异常数据时，或者在得分基于人的观点的情况下，就会发生这种情况。尽管这种行为可以干扰许多传统的搜索算法，但是遗传算法通常对此具有鲁棒性，这要归功于反复交叉和重新评估个体的操作。</p>
-<ol start="5">
-<li>并行性</li>
-</ol>
-<p>​	遗传算法非常适合并行化和分布式处理。适应度是针对每个个体独立计算的，这意味着可以同时评估种群中的所有个体。另外，选择、交叉和突变的操作可以分别在种群中的个体和个体对上同时进行。</p>
-<ol start="6">
-<li>持续学习</li>
-</ol>
-<p>​	进化永无止境，随着环境条件的变化，种群逐渐适应它们。遗传算法可以在不断变化的环境中连续运行，并且可以在任何时间点获取和使用当前最佳的解。但是需要环境的变化速度相对于遗传算法的搜索速度慢。</p>
-<h4 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h4><ol>
-<li>需要特殊定义</li>
-</ol>
-<p>​	将遗传算法应用于给定问题时，需要为它们创建合适的表示形式——定义适应度函数和染色体结构，以及适用于该问题的选择、交叉和变异算子。</p>
-<ol start="2">
-<li>超参数调整</li>
-</ol>
-<p>​	遗传算法的行为由一组超参数控制，例如种群大小和突变率等。将遗传算法应用于特定问题时，没有标准的超参数设定规则。计算密集种群规模较大时可能需要大量计算，在达到良好结果之前会非常耗时。可以通过选择超参数、并行处理以及在某些情况下缓存中间结果来缓解这些问题。</p>
-<ol start="3">
-<li>过早趋同</li>
-</ol>
-<p>​	如果一个个体的适应能力比种群的其他个体的适应能力高得多，那么它的重复性可能足以覆盖整个种群。这可能导致遗传算法过早地陷入局部最大值，而不是找到全局最大值。为了防止这种情况的发生，需要保证物种的多样性。</p>
-<ol start="4">
-<li>无法保证的解的质量</li>
-</ol>
-<p>​	遗传算法的使用并不能保证找到当前问题的全局最大值（但几乎所有的搜索和优化算法都存在此类问题，除非它是针对特定类型问题的解析解）。通常，遗传算法在适当使用时可以在合理的时间内提供良好的解决方案。</p>
-<h2 id="遗传算法的应用"><a href="#遗传算法的应用" class="headerlink" title="遗传算法的应用"></a>遗传算法的应用</h2><ol>
-<li><p>数学表示复杂的问题：由于遗传算法仅需要适应度函数的结果，因此它们可用于难以求导或无法求导的目标函数问题，大量参数问题以及参数混合问题类型。</p>
-</li>
-<li><p>没有数学表达式的问题：只要可以获得分数值或有一种方法可以比较两个解，遗传算法就不需要对问题进行数学表示。</p>
-</li>
-<li><p>涉及噪声数据问题：遗传算法可以应对数据可能不一致的问题，例如源自传感器输出或基于人类评分的数据。</p>
-</li>
-<li><p>随时间而变化的环境所涉及的问题：遗传算法可以通过不断创建适应变化的新一代来响应较为缓慢的环境变化。</p>
-</li>
-</ol>
-<h3 id="利用遗传算法解决旅行商-Travelling-Salesman-Problem-简记TSP-问题"><a href="#利用遗传算法解决旅行商-Travelling-Salesman-Problem-简记TSP-问题" class="headerlink" title="利用遗传算法解决旅行商(Travelling Salesman Problem, 简记TSP)问题"></a>利用遗传算法解决旅行商(Travelling Salesman Problem, 简记TSP)问题</h3><h4 id="问题定义"><a href="#问题定义" class="headerlink" title="问题定义"></a>问题定义</h4><p>旅行商问题(Travelling Salesman Problem, 简记TSP)：设有n个城市和距离矩阵$D&#x3D;[d_{ij}]$，其中$d_{ij}$表示城市$i$到城市$j$的距离$(i，j&#x3D;1，2 … n)$，则问题是要找出遍访每个城市恰好一次的一条回路并使其路径长度为最短。</p>
-<h4 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h4><ol>
-<li>城市个数选择中国34个省会城市坐标，种群规模设置为100，变异概率设置为0.01，迭代次数初步设置为5000。</li>
-<li>个体适应度代表的是34个城市连成路线的欧式距离。</li>
-<li>选择个体进行交叉操作的时候采用轮盘赌策略，并采用顺序交叉方式生成子代。</li>
-<li>变异操作对每一个个体以变异概率确定是否变异，如果变异的话，随机在个体中选择两个城市，然后交换这两个城市的位置得到变异的效果。</li>
-<li>产生新的个体之后，采用精英保留策略，即适应度最好的20个体会被保留下来，其他个体按照适应度进行保留。</li>
-</ol>
-<h4 id="程序流程"><a href="#程序流程" class="headerlink" title="程序流程"></a>程序流程</h4><ol>
-<li><p>初始化城市序列的坐标</p>
-</li>
-<li><p>用欧式距离计算城市序列中每个个体的适应度</p>
-</li>
-<li><p>根据适应度来选择个体作为交叉操作的父体，选择完之后用顺序交叉来进行交叉操作</p>
-</li>
-<li><p>以一定的变异个体才确定是否对个体进行变异，如果需要进行变异，侧随机选择个体的两个城市进行交换。</p>
-</li>
-<li><p>选择适应度最好的20个个体直接保留到下一代，下一代的其他个体按照个体的适应度进行选择。</p>
-</li>
-<li><p>判断是否达到迭代次数，如果没有转到第2步，达到的话转到第7步。</p>
-</li>
-<li><p>输出适应度最好的个体。</p>
-</li>
-</ol>
-<h4 id="代码运行以及测试"><a href="#代码运行以及测试" class="headerlink" title="代码运行以及测试"></a>代码运行以及测试</h4><p>在城市个数即中国省会城市个数为34，种群大小为100，选择20个精英进行保留，采用轮盘赌选择交叉父体，并用顺序交叉方式进行交叉操作.</p>
-<p>变异概率为0.01的情况下。对迭代次数500,800,1000,3000,5000,6000进行了测试。</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%B5%8B%E8%AF%95.png" alt="img" loading="lazy"></p>
-<p>根据实验结果可以看出，随着次数的增加，城市之间的路线距离也在逐渐的下降，而且可以发现，在迭代次数增加的前期，比如500增到100的时候，城市之间的距离下降的比较快，而在于迭代次数增加的后期比如5000-6000，距离基本没有明显的下降了，而是趋于平稳，可以证明本实验设计的算法大概在5000次左右就可以收敛到一个蛮好的结果。</p>
-<p>最后，由于遗传算法是一个启发式的算法，存在一定的偶然性，有时候可能会陷入到一种局部最优解中，比如我在实验中有时候尝试次数为7000次的时候，效果反而没有之前的好。这也说明了并不是迭代次数越多越好。</p>
-<p>在迭代次数为1000的情况下，依次对变异率0.001,0.002,0.005,0.008,.0.01,0.02进行了测试：</p>
-<p><img data-src="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/%E6%B5%8B%E8%AF%952.png" alt="img" loading="lazy"></p>
-<p>根据实验结果可以看出，当变异率从0.001逐渐增大的时候，城市之间的路径连线在得到不断的优化，即最短路径长度逐渐变短。当变异率逐渐增大到0.008以后，进一步增大到0.1甚至0.2的时候发现路径反而变差了，即最短路径长度再次出现增大的情况，而且根据迭代曲线可以看出，在迭代的过程中出现了明显的震荡，证明了过高的变异率会导致遗传算法的不稳定性，从而使得算法陷入到了一个局部最优解中。</p>
-<p>所以可以看出变异率对于遗传算法的最终效果显得尤为重要，过小或者过大都不是一种好的选择，根据实验结果0.008左右会是一个不错的参考值。</p>
-<h4 id="结论"><a href="#结论" class="headerlink" title="结论"></a>结论</h4><p>旅行商问题属于NP难问题，无法在线性的复杂度中求解。利用遗传算法这种启发式算法可以在相对短的时间内找到一个相对优化的解。而且在实验中我们发现，一些超参数的设置，比较变异率，种群大小，迭代次数对于最终的结果都是至关重要的。另外对于一些策略，比如交叉策略，精英保留策略的运用对于产生一个好的解显得尤为重要。</p>
-<h3 id="附件"><a href="#附件" class="headerlink" title="附件"></a>附件</h3><h4 id="程序代码"><a href="#程序代码" class="headerlink" title="程序代码"></a>程序代码</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> copy</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">City</span>:</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, name, x, y</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        初始化城市对象，包括城市名称、横坐标和纵坐标。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        参数:</span></span><br><span class="line"><span class="string">            name (str): 城市名称。</span></span><br><span class="line"><span class="string">            x (float): 城市的横坐标。</span></span><br><span class="line"><span class="string">            y (float): 城市的纵坐标。</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        self.name = name</span><br><span class="line">        self.x = x</span><br><span class="line">        self.y = y</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__repr__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        返回城市对象的字符串表示形式。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">        返回:</span></span><br><span class="line"><span class="string">            str: 城市对象的字符串表示形式。</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;(&quot;</span> + <span class="built_in">str</span>(self.x) + <span class="string">&quot;,&quot;</span> + <span class="built_in">str</span>(self.y) + <span class="string">&quot;)&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">distance</span>(<span class="params">ca, cb</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    计算两个城市之间的欧几里德距离。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        ca (City): 第一个城市。</span></span><br><span class="line"><span class="string">        cb (City): 第二个城市。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        float: 两个城市之间的欧几里德距离。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dx = <span class="built_in">abs</span>(ca.x - cb.x)</span><br><span class="line">    dy = <span class="built_in">abs</span>(ca.y - cb.y)</span><br><span class="line">    distance = np.sqrt((dx ** <span class="number">2</span>) + (dy ** <span class="number">2</span>))</span><br><span class="line">    <span class="keyword">return</span> distance</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">init_pop</span>(<span class="params">city_list, popSize</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    随机初始化一组路线种群。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        city_list (list): 城市对象列表。</span></span><br><span class="line"><span class="string">        popSize (int): 种群的大小。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 初始种群。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    pop = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(popSize):</span><br><span class="line">        new_city_list = random.sample(city_list, <span class="built_in">len</span>(city_list))</span><br><span class="line">        pop.append(new_city_list)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> pop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">fitness</span>(<span class="params">pop</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    计算种群中个体的适应度。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        pop (list): 种群中的一个个体。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        float: 个体的适应度。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    dis_citys = distance_citys(pop)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">1.0</span> / dis_citys</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">distance_citys</span>(<span class="params">pop</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    计算给定路线的总距离。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        pop (list): 给定的路线。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        float: 路线的总距离。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    temp_dis = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(pop) - <span class="number">1</span>):</span><br><span class="line">        temp_dis += distance(pop[i], pop[i + <span class="number">1</span>])</span><br><span class="line">    temp_dis += distance(pop[<span class="built_in">len</span>(pop) - <span class="number">1</span>], pop[<span class="number">0</span>])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> temp_dis</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">rank</span>(<span class="params">poplulation</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    对种群中的个体按适应度进行排名。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        population (list): 种群。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 按适应度从高到低排名的种群列表。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    rankPop_dic = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(poplulation)):</span><br><span class="line">        fit = fitness(poplulation[i])</span><br><span class="line">        rankPop_dic[i] = fit</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sorted</span>(rankPop_dic.items(), key=<span class="keyword">lambda</span> x: x[<span class="number">1</span>], reverse=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">select</span>(<span class="params">pop, pop_rank, eliteSize</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    选择下一代种群。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        pop (list): 当前种群。</span></span><br><span class="line"><span class="string">        pop_rank (list): 种群中个体的适应度排名列表。</span></span><br><span class="line"><span class="string">        eliteSize (int): 精英个体数量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 下一代种群列表。</span></span><br><span class="line"><span class="string">     &quot;&quot;&quot;</span></span><br><span class="line">    select_pop = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(eliteSize):</span><br><span class="line">        select_pop.append(pop[pop_rank[i][<span class="number">0</span>]])</span><br><span class="line"></span><br><span class="line">    cumsum = <span class="number">0</span></span><br><span class="line">    cumsum_list = []</span><br><span class="line">    temp_pop = copy.deepcopy(pop_rank)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp_pop)):</span><br><span class="line">        cumsum += temp_pop[i][<span class="number">1</span>]</span><br><span class="line">        cumsum_list.append(cumsum)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp_pop)):</span><br><span class="line">        cumsum_list[i] /= cumsum</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp_pop) - eliteSize):</span><br><span class="line">        rate = random.random()</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp_pop)):</span><br><span class="line">            <span class="keyword">if</span> cumsum_list[j] &gt; rate:</span><br><span class="line">                select_pop.append(pop[pop_rank[i][<span class="number">0</span>]])</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> select_pop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">breed</span>(<span class="params">pop, eliteSize</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    生成下一代种群。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        pop (list): 当前种群。</span></span><br><span class="line"><span class="string">        eliteSize (int): 精英个体数量。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 下一代种群列表。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    breed_pop = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(eliteSize):</span><br><span class="line">        breed_pop.append(pop[i])</span><br><span class="line"></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; (<span class="built_in">len</span>(pop) - eliteSize):</span><br><span class="line">        a = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(pop) - <span class="number">1</span>)</span><br><span class="line">        b = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(pop) - <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">if</span> a != b:</span><br><span class="line">            fa, fb = pop[a], pop[b]</span><br><span class="line">            genea, geneb = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(pop[a]) - <span class="number">1</span>), random.randint(<span class="number">0</span>, <span class="built_in">len</span>(pop[b]) - <span class="number">1</span>)</span><br><span class="line">            startgene = <span class="built_in">min</span>(genea, geneb)</span><br><span class="line">            endgene = <span class="built_in">max</span>(genea, geneb)</span><br><span class="line">            child1 = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(startgene, endgene):</span><br><span class="line">                child1.append(fa[j])</span><br><span class="line">            <span class="comment"># child1 = copy.deepcopy(fa[:-1])</span></span><br><span class="line">            child2 = []</span><br><span class="line">            <span class="keyword">for</span> j <span class="keyword">in</span> fb:</span><br><span class="line">                <span class="keyword">if</span> j <span class="keyword">not</span> <span class="keyword">in</span> child1:</span><br><span class="line">                    child2.append(j)</span><br><span class="line">            <span class="comment"># child2 = [j for j in fb if j not in child1]</span></span><br><span class="line">            breed_pop.append(child1 + child2)</span><br><span class="line">            i = i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> breed_pop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mutate</span>(<span class="params">pop, mutationRate</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    对种群中的个体进行变异。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">       pop (list): 当前种群。</span></span><br><span class="line"><span class="string">       mutationRate (float): 变异率。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">       list: 变异后的种群列表。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    mutation_pop = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(pop)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(pop[i])):</span><br><span class="line">            rate = random.random()</span><br><span class="line">            <span class="keyword">if</span> rate &lt; mutationRate:</span><br><span class="line">                a = random.randint(<span class="number">0</span>, <span class="built_in">len</span>(pop[i]) - <span class="number">1</span>)</span><br><span class="line">                pop[i][a], pop[i][j] = pop[i][j], pop[i][a]</span><br><span class="line">        mutation_pop.append(pop[i])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> mutation_pop</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">next_pop</span>(<span class="params">population, eliteSize, mutationRate</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    生成下一代种群。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        population (list): 当前种群。</span></span><br><span class="line"><span class="string">        eliteSize (int): 精英个体数量。</span></span><br><span class="line"><span class="string">        mutationRate (float): 变异率。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 下一代种群列表。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    pop_rank = rank(population)  <span class="comment"># 按照适应度排序</span></span><br><span class="line">    select_pop = select(population, pop_rank, eliteSize)  <span class="comment"># 精英选择策略，加上轮盘赌选择</span></span><br><span class="line">    breed_pop = breed(select_pop, eliteSize)  <span class="comment"># 繁殖</span></span><br><span class="line">    next_generation = mutate(breed_pop, mutationRate)  <span class="comment"># 变异</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> next_generation</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画出路线图的动态变化</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GA_plot_dynamic</span>(<span class="params">city_list, popSize, eliteSize, mutationRate, generations</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    绘制路线图的动态变化。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        city_list (list): 城市对象列表。</span></span><br><span class="line"><span class="string">        popSize (int): 种群大小。</span></span><br><span class="line"><span class="string">        eliteSize (int): 精英个体数量。</span></span><br><span class="line"><span class="string">        mutationRate (float): 变异率。</span></span><br><span class="line"><span class="string">        generations (int): 迭代次数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        list: 最佳路线。</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    plt.figure(<span class="string">&#x27;Map&#x27;</span>)</span><br><span class="line">    plt.ion()</span><br><span class="line">    population = init_pop(city_list, popSize)</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;initial distance:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>])))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(generations):</span><br><span class="line">        plt.cla()</span><br><span class="line">        population = next_pop(population, eliteSize, mutationRate)</span><br><span class="line">        idx_rank_pop = rank(population)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">        best_route = population[idx_rank_pop]</span><br><span class="line">        city_x = []</span><br><span class="line">        city_y = []</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(best_route)):</span><br><span class="line">            city = best_route[j]</span><br><span class="line">            city_x.append(city.x)</span><br><span class="line">            city_y.append(city.y)</span><br><span class="line">        city_x.append(best_route[<span class="number">0</span>].x)</span><br><span class="line">        city_y.append(best_route[<span class="number">0</span>].y)</span><br><span class="line">        plt.scatter(city_x, city_y, c=<span class="string">&#x27;r&#x27;</span>, marker=<span class="string">&#x27;*&#x27;</span>, s=<span class="number">200</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line">        plt.plot(city_x, city_y, <span class="string">&quot;b&quot;</span>, ms=<span class="number">20</span>)</span><br><span class="line">        plt.pause(<span class="number">0.1</span>)</span><br><span class="line"></span><br><span class="line">    plt.ioff()</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;final distance:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>])))</span><br><span class="line">    bestRouteIndex = rank(population)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    bestRoute = population[bestRouteIndex]</span><br><span class="line">    <span class="keyword">return</span> bestRoute</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">GA</span>(<span class="params">city_list, popSize, eliteSize, mutationRate, generations</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    遗传算法求解路径问题。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    参数:</span></span><br><span class="line"><span class="string">        city_list (list): 城市对象列表。</span></span><br><span class="line"><span class="string">        popSize (int): 种群大小。</span></span><br><span class="line"><span class="string">        eliteSize (int): 精英个体数量。</span></span><br><span class="line"><span class="string">        mutationRate (float): 变异率。</span></span><br><span class="line"><span class="string">        generations (int): 迭代次数。</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    返回:</span></span><br><span class="line"><span class="string">        None</span></span><br><span class="line"><span class="string">    &quot;&quot;&quot;</span></span><br><span class="line">    population = init_pop(city_list, popSize)  <span class="comment"># 初始化种群</span></span><br><span class="line">    process = []</span><br><span class="line"></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;initial distance:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>])))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(generations):</span><br><span class="line">        population = next_pop(population, eliteSize, mutationRate)  <span class="comment"># 产生下一代种群</span></span><br><span class="line">        process.append(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>]))</span><br><span class="line"></span><br><span class="line">    plt.figure(<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;final distance:&#123;&#125;&quot;</span>.<span class="built_in">format</span>(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>])))</span><br><span class="line">    plt.plot(process)</span><br><span class="line">    plt.ylabel(<span class="string">&#x27;Distance&#x27;</span>)</span><br><span class="line">    plt.xlabel(<span class="string">&#x27;Generation&#x27;</span>)</span><br><span class="line">    plt.savefig(<span class="built_in">str</span>(generations) + <span class="string">&#x27;_&#x27;</span> + <span class="built_in">str</span>(<span class="number">1.0</span> / (rank(population)[<span class="number">0</span>][<span class="number">1</span>])) + <span class="string">&#x27;_&#x27;</span> + <span class="built_in">str</span>(mutationRate) + <span class="string">&#x27;_process.jpg&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    plt.figure(<span class="number">2</span>)</span><br><span class="line">    idx_rank_pop = rank(population)[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line">    best_route = population[idx_rank_pop]</span><br><span class="line">    city_x = []</span><br><span class="line">    city_y = []</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(best_route)):</span><br><span class="line">        city = best_route[j]</span><br><span class="line">        city_x.append(city.x)</span><br><span class="line">        city_y.append(city.y)</span><br><span class="line">    city_x.append(best_route[<span class="number">0</span>].x)</span><br><span class="line">    city_y.append(best_route[<span class="number">0</span>].y)</span><br><span class="line">    plt.scatter(city_x, city_y, c=<span class="string">&#x27;r&#x27;</span>, marker=<span class="string">&#x27;*&#x27;</span>, s=<span class="number">200</span>, alpha=<span class="number">0.5</span>)</span><br><span class="line">    plt.plot(city_x, city_y, <span class="string">&quot;b&quot;</span>, ms=<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line">    plt.savefig(<span class="built_in">str</span>(generations) + <span class="string">&#x27;_&#x27;</span> + <span class="built_in">str</span>(mutationRate) + <span class="string">&#x27;_route.jpg&#x27;</span>)</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">city_list = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> <span class="built_in">open</span>(<span class="string">&#x27;city.txt&#x27;</span>, <span class="string">&#x27;r&#x27;</span>, encoding=<span class="string">&#x27;UTF-8&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">    lines = f.readlines()</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">        line = line.replace(<span class="string">&#x27;\n&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">        line = line.replace(<span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        city = line.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">        city_list.append(City(<span class="built_in">str</span>(city[<span class="number">0</span>]), <span class="built_in">float</span>(city[<span class="number">1</span>]), <span class="built_in">float</span>(city[<span class="number">2</span>])))</span><br><span class="line"></span><br><span class="line"><span class="comment"># mutationRates = [0.001, 0.002, 0.005, 0.008, 0.01, 0.02]</span></span><br><span class="line"><span class="comment"># for mut in mutationRates:</span></span><br><span class="line">GA(city_list, <span class="number">100</span>, <span class="number">20</span>, <span class="number">0.01</span>, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
-
-<h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">北京	116.46 39.92</span><br><span class="line">天津 117.2 39.13</span><br><span class="line">上海 121.48 31.22</span><br><span class="line">重庆 106.54 29.59</span><br><span class="line">拉萨	91.11 29.97</span><br><span class="line">乌鲁木齐 87.68 43.77</span><br><span class="line">银川 106.27 38.47</span><br><span class="line">呼和浩特 111.65 40.82</span><br><span class="line">南宁	108.33 22.84</span><br><span class="line">哈尔滨 126.63 45.75</span><br><span class="line">长春 125.35 43.88</span><br><span class="line">沈阳 123.38 41.8</span><br><span class="line">石家庄 114.48 38.03</span><br><span class="line">太原	112.53 37.87</span><br><span class="line">西宁 101.74 36.56</span><br><span class="line">济南	117 36.65</span><br><span class="line">郑州	113.6 34.76</span><br><span class="line">南京 118.78 32.04</span><br><span class="line">合肥 117.27 31.86</span><br><span class="line">杭州 120.19 30.26</span><br><span class="line">福州 119.3 26.08</span><br><span class="line">南昌	115.89 28.68</span><br><span class="line">长沙	113 28.21</span><br><span class="line">武汉	114.31 30.52</span><br><span class="line">广州	113.23 23.16</span><br><span class="line">台北	121.5 25.05</span><br><span class="line">海口	110.35 20.02</span><br><span class="line">兰州 103.73 36.03</span><br><span class="line">西安 108.95 34.27</span><br><span class="line">成都 104.06 30.67</span><br><span class="line">贵阳 106.71 26.57</span><br><span class="line">昆明	102.73 25.04</span><br><span class="line">香港	114.1 22.2</span><br><span class="line">澳门 113.33 22.13</span><br></pre></td></tr></table></figure>
-
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/10/17/%E9%81%97%E4%BC%A0%E7%AE%97%E6%B3%95(Genetic%20Algorithm)%E7%AE%80%E4%BB%8B%E4%B8%8E%E5%AE%9E%E7%8E%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -455,9 +331,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-09-10 16:29:18 / 修改时间：18:55:42" itemprop="dateCreated datePublished" datetime="2023-09-10T16:29:18+08:00">2023-09-10</time>
+      <time title="创建时间：2023-09-10 16:29:18" itemprop="dateCreated datePublished" datetime="2023-09-10T16:29:18+08:00">2023-09-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-10-17 18:48:07" itemprop="dateModified" datetime="2023-10-17T18:48:07+08:00">2023-10-17</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E7%BB%8F%E9%AA%8C%E5%BF%83%E5%BE%97/" itemprop="url" rel="index"><span itemprop="name">经验心得</span></a>
+        </span>
     </span>
 
   
@@ -478,97 +369,14 @@
 <p>首先说一下成都所看中的能力（优先级由高到底）：项目，论文竞赛，本科专业，初试成绩，本科学校。</p>
 <p>因此劝退一波人：无项目的人，跨考者（今年刷5个，330多的高分跨考被刷了），当然我这只对大部分人，你是小部分的强者完全可以忽视这些！</p>
 <p>我的优势为我有许多项目（你可以从我的博客和gitee上看出），另外我有一个软著。所以，我这个经验贴的受众其实是那些有着丰富的项目经验的但考试能力较差的人，其他人建议只参考参考。</p>
-<h1 id="择校"><a href="#择校" class="headerlink" title="择校"></a>择校</h1><p>关于择校我就一句话：“<strong>选择大于努力</strong>”。</p>
-<p>谁都想上985, 211。但是盲目的头铁换来的只会是续费一年的备考。各位量力而行，该跳车就跳车。</p>
-<p>我备考的时候首先就是深圳大学，号称“清北深”，毕业就进腾讯。结果导致这几年的分数爆炸。在暑假期间，我果断跳车选择了南方科技大学。</p>
-<p>但是在9月份南方科技大学的招生简章出来后，我果断跳车，因为只招9个人，英语要求还挺高。</p>
-<p>后来看到了国科大，了解了一下各个研究所，直接选择了成都应用研究所，原因很简单：</p>
-<ul>
-<li>分低，只有国家线的复试线。</li>
-<li>复试要求我的项目完全够。</li>
-<li>成都地段也算不错。</li>
-</ul>
-<p>其实，以当时的我的感觉来看，我考成都计算所是有点溢价的，因为我预估为350左右，远远超过了成都所需要的分数，甚至在往年能够当前三名。不过，从现在来看，我只能说，分刚刚好，一分没浪费，跳车<strong>好跳</strong>！</p>
-<h1 id="初试（不重要，过线就行）"><a href="#初试（不重要，过线就行）" class="headerlink" title="初试（不重要，过线就行）"></a>初试（不重要，过线就行）</h1><h2 id="英语和政治"><a href="#英语和政治" class="headerlink" title="英语和政治"></a>英语和政治</h2><p>呃呃，我英语42，政治48，就不误导大家了，我虽然过了英语四六级，但是考的太差，差点没过国家线。我总结的原因有以下几点：</p>
-<ol>
-<li>我英语政治确实差，我英语四级考了3次才考到502，六级考了2次才452；另外我政治没做1000题，看课也很潦草，不过肖八，肖四确实认真背了。</li>
-<li>另外就是考试那天中奖了——新冠，头发烧脑袋不清醒不说，原本就潦草的字更潦草了。</li>
-<li>再加上国科大所有的所都属于北京，北京是极旱区，改卷巨压分。盲猜我英语政治主观题不超过20分。</li>
-</ol>
-<p>当然，也可做下反面教材：</p>
-<p>我英语3月开始记单词，直到最后记了两轮半（一坤轮），英语真题暑假开始做的，正确率2010年前的很低，后面好点，其中穿插看了唐迟的阅读还有王江涛的作文。</p>
-<p>政治我是暑假开始看课的，看的肖秀荣的基础配套（我的评价是烂），暑假结束开始看徐涛的强化，《1000题》只做了不到200题，最后背的肖八肖四。其实肖秀荣都押到真题了，我都写出来了，估计是字写得太难看了分才这么低。</p>
-<p>最后我还是挺庆幸的，过线了！</p>
-<h2 id="数学"><a href="#数学" class="headerlink" title="数学"></a>数学</h2><p>数学是我投入最多时间的一门课，从3月初到12月考前，每天都是雷打不动的一整个上午的时间（8：00~11：20），就算这样，我也有许多决策失误导致我险些没学完，最终就算学完了，基础也不是很牢固。</p>
-<p>我高等数学全程跟的张宇，他讲的非常有条理，而且课上一点小小的冷笑话也使得课堂没那么犯困，不过我做的题没有选择张宇，张宇的题除了书上的我只做了张宇八套卷和张宇四套卷，因为张宇的题偏难，在时间有限的情况下还是优先跟真题差不多的题，比如李林的880。</p>
-<p>我线代基础跟的张宇，强化跟的李永乐，因为张宇很有条理，啥都不懂的情况下跟张宇学的更容易，李永乐最大的问题就是题大部分都是真题，讲的时候会涉及到后面的知识点，因此讲的非常混乱，我选择强化跟李永乐也是听他们说的线代之王，想领教一下！</p>
-<p>我概率论全程张宇，选张宇没有选余炳森的原因也很简单，就是我说的决策失误，没时间学了，在赶进度。而张宇的书很薄，余炳森的巨厚。</p>
-<p>然后就是我做的习题集了，除了书本上的习题之外，我在基础阶段做了660，强化阶段做了330，模拟卷做了张八，张六，李林八，李林四，李艳芳三套卷。当然真题也是必做的。</p>
-<p>我的时间点：</p>
-<ol>
-<li>暑假前，过完数学基础，除书上习题，额外做了660</li>
-<li>暑假期间完成数学强化，除书上习题，额外做了330</li>
-<li>9月份-10月份做真题</li>
-<li>10月份到11月份做模拟卷</li>
-<li>11月份到考前，刷错题，二刷真题与模拟卷</li>
-</ol>
-<p>我的决策失误就是一直在跟张宇的新课，到后期我就是在等他出课，他高数基础是在暑假快开始结束的，可是我还没开始线代概率，所以我在赶进度，学的很粗糙，这个问题到我强化线代概率就爆炸了，连锁反应我线代概率学的不咋滴。所以我数学107错的全部都是线代概率，特别是选填。</p>
-<h2 id="408"><a href="#408" class="headerlink" title="408"></a>408</h2><p>我专业课408也是雷打不动一个下午，我的顺序是数据结构，计算机组成原理，操作系统，计算机网络。这些没啥好说的，直接无脑跟王道。</p>
-<p>我的节奏就是：</p>
-<p>暑假前基础：</p>
-<ol>
-<li>看一小节书</li>
-<li>看一小节基础课</li>
-<li>做课后选择题</li>
-</ol>
-<p>暑假强化：</p>
-<ol>
-<li>看一章书</li>
-<li>再看对应强化课</li>
-<li>没看懂的再看基础课，看懂了直接进行下一步</li>
-<li>做选择题错题</li>
-<li>做大题（真题）</li>
-</ol>
-<p>然后就是真题阶段，真题刷3遍都不为过，王道书至少看2遍。模拟卷和教材时间充裕可做。</p>
-<p>接下来具体聊聊各科目</p>
-<p>数据结构：</p>
-<p>除了基本节奏之外，你最好对C语言比较熟悉，有了良好的语言基础，你记伪代码会容易很多。同时每学一个数据结构定义或者算法，一定要在纸上默一下。至于严的数据结构教材和LeetCode，我只能说有时间就搞，但大部分性价比不高，除非你复试有机试。</p>
-<p>计算机组成原理：</p>
-<p>计算机组成原理比较难，学的时候非常抽象，我在数据的表示那一章到最后都没学懂，但事实上只考一道选择题和大题的一小问。另外就是CPU，我直到强化的时候看到了咸鱼做的骚图（王道做强化的一个图），我才恍然大悟。我只能说，前期没学懂很正常，但是你都记住，但后面会有一个顿悟的过程的。另外，王道的强化课一定要看，这是你顿悟的引子。</p>
-<p>操作系统：</p>
-<p>操作系统计组一样，但没有那么底层，所以学的比较轻松，一些算法啥的计算机人应该问题不大，考试考的主要是概念，大题固定同步与互斥，一道计算。类比一下计组一下就行。同时，王道强化课一定要看。</p>
-<p>计算机网络：</p>
-<p>计网是王道楼楼讲的，讲的依托答辩，但是没办法，基础课好好听，强化还是别听了，她讲的强化不如自学。计网主要是一些杂的小知识点，比较难的就是关于时间速率的计算了，但都是套路题。</p>
-<p>最后，真题，王道书多看，把里面的题做懂了，最低100分以上。</p>
-<h1 id="复试（非常重要，直接决定你的最终结果）"><a href="#复试（非常重要，直接决定你的最终结果）" class="headerlink" title="复试（非常重要，直接决定你的最终结果）"></a>复试（非常重要，直接决定你的最终结果）</h1><h2 id="专业面试"><a href="#专业面试" class="headerlink" title="专业面试"></a>专业面试</h2><p>复试我直接emo住了，我们是疫情以来第一次线下，我借鉴王道论坛和学长的经验贴，最后得出来的结论是卵用没有。所有经验贴说问了啥啥问题给你罗列出来，然而根本没有说到关键点，我背他们的题纯属浪费时间，同样，看到这的学弟学妹们，背面我的题啥用也没有，但是学长告诉你们一个关键点，你们就有了方向。</p>
-<p>我不知道其他组的，但是图像组，没有一个数学类问题或者专业问题，全部问你项目，特别是与他们的方向契合的项目，他们会问的很深，直到你不会为止，所以你不会很正常，你只要不要在很基础的地方不会分就不会低。</p>
-<p>我被问麻了，我的技术栈为Java，项目大部分都是springboot，他们鸟都不鸟这方面，他们只关注人工智能的项目，然后我的简历上写了了解AI，他们疯狂问我深度学习，还好我之前自学过吴恩达的课程，基础的东西还是答上来了，不过后面全程道歉，我那天以为我寄了的。</p>
-<p>另外一个碰都不能碰的话题，千万别说你要考博士，他们一听到你读博就来劲了，对你的要求会提高很多，当然你表现的好的话或许分更高，那天我碰了（耍小聪明把自己坑了），然后就被拷打了。</p>
-<p>我现在回想复试，老师的那些话仍然存在我的脑海，特别是：</p>
-<ol>
-<li>“你基础太差，我专业问题都没法问！”，这句话是问我深度学习我道歉不会之后说的。</li>
-<li>“你一个物联网的，干着计算机的项目，做着社交网络的毕设，选的又是图像识别方向，你还想读博，读博很幸苦的，你现在随图像识别感兴趣，别等会读完硕士说我博士要换方向那可就麻烦了…….”，这句话是他看见我要读博后说的话，后面还跟我分析了当前深度学习领域的现状啥的。我就像个呆瓜一样杵在那里只能嗯嗯嗯。</li>
-</ol>
-<h2 id="英语面试"><a href="#英语面试" class="headerlink" title="英语面试"></a>英语面试</h2><p>我英语很垃圾，所以我问了许多学长，然后他们都说随便搞搞就行，于是我就傻乎乎地放松警惕了，而且我当时认为我专业课寄了，就有点摆烂了。</p>
-<p>不得不说，主面试官是位小姐姐，笑的很温暖，可惜我当时慌得不行，无暇感受。。。</p>
-<p>开局自我介绍，提前准备直接开背，然后问你问题，我回答的就是那种单词，连不成句子的那种，最后就是文献翻译，直接傻眼，节选的专业文献，没上下文，很多专有名词和缩写，我一个单词一个单词翻译的。</p>
-<p>那天面完直接瘫在酒店，不知道以后怎么办，万念俱灰，但又有一丝希望奇迹发生的期待，然后之前准备在成都玩几天的想法都没了，直接灰溜溜地润回学校了，失眠四天后，奇迹竟然发生了，上岸了，诶，回想起来，复试是真痛苦。</p>
-<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>回想过去一年，我认为我最牛的是我的择校，好跳，如果继续深大，我还是能进复试，但估计是平均分之下，上岸难说。</p>
-<p>其次就是这年太艰难险阻的，疫情期间学的还要防备新冠，学校图书馆动不动就关，最搞的是考试前疫情开放，好巧不巧，考试那天得新冠发高烧，第一天靠感冒灵撑过去的，第二天要做题只好连吃两颗布洛芬。</p>
-<p>复试又是第一年线下，往年学长学姐的经验贴不大好用，我准备复试时的完全没方向，甚至方向错误，去背那些专业课问题，基础课问题，结果最后一个没问，全是项目。</p>
-<p>复试这几天来，我没睡过一天的好觉，做梦都是我在面试被拷打或者成绩出来时的场景。</p>
-<p>不过最终还是成功上岸了！！！</p>
-<p>另外分享一下我的兄弟们，我们当时三人组在图书馆复习（准确来说四个人，但另一个不跟我们坐一起），我考上了果壳，另一个卷王409考上科软，还有一个南航第10名进复试可惜差两分拟录取，那个不和我们坐一起的卷王410+考上河海大学</p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%BD%95%E5%8F%96%E9%80%9A%E7%9F%A5%E4%B9%A6%E9%82%AE%E4%BB%B6.jpg" alt="录取通知书邮件" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E5%BD%95%E5%8F%96%E9%80%9A%E7%9F%A5%E4%B9%A6.jpg" alt="录取通知书" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E9%99%A2%E5%A3%AB%E5%AF%84%E8%AF%AD%E5%B0%81%E9%9D%A2.jpg" alt="院士寄语封面" loading="lazy"></p>
-<p><img data-src="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/%E9%99%A2%E5%A3%AB%E5%AF%84%E8%AF%AD%E5%86%85%E5%AE%B9.jpg" alt="院士寄语内容" loading="lazy"></p>
-<h1 id="相关附件"><a href="#相关附件" class="headerlink" title="相关附件"></a>相关附件</h1><p>右侧导航栏考研复试ppt模板：<a href="/download/%E5%8F%B3%E4%BE%A7%E5%AF%BC%E8%88%AA%E6%A0%8F%E8%80%83%E7%A0%94%E5%A4%8D%E8%AF%95ppt%E6%A8%A1%E6%9D%BF.pptx" title="考研复试ppt模板">点击下载</a></p>
-<h1 id="吐槽"><a href="#吐槽" class="headerlink" title="吐槽"></a>吐槽</h1><p>最近有很多人来咨询我复试问题，我也都一一回复了，就有个问题忍不住想吐槽一下：</p>
-<p>首先我想问你们，国科大虽然是双非但也不是很差吧，为啥一群小可爱来问我的时候，我问啥他们啥都没有(项目，论文，竞赛)，甚至还有跨考专科的，然后再问为啥选择国科大，回答都是因为分低……</p>
-<p>我说自己啥本事掂量掂量好不，项目、论文、竞赛、初试成绩总得占一样吧，啥都没有也来凑热闹……最无语的是让他慎重考虑还不听，说自己咋了咋了，说的我在故意劝退一样，我都上岸了劝退你们干嘛，忠言逆耳啊。</p>
-<p>家人们，谁懂啊，无语死了。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/09/10/%E5%9B%BD%E7%A7%91%E5%A4%A7%E6%88%90%E9%83%BD%E5%BA%94%E7%94%A8%E8%AE%A1%E7%AE%97%E6%89%80%E8%80%83%E7%A0%94%E7%BB%8F%E9%AA%8C%E8%B4%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

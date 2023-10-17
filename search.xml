@@ -11,6 +11,8 @@
 <p>首先说一下成都所看中的能力（优先级由高到底）：项目，论文竞赛，本科专业，初试成绩，本科学校。</p>
 <p>因此劝退一波人：无项目的人，跨考者（今年刷5个，330多的高分跨考被刷了），当然我这只对大部分人，你是小部分的强者完全可以忽视这些！</p>
 <p>我的优势为我有许多项目（你可以从我的博客和gitee上看出），另外我有一个软著。所以，我这个经验贴的受众其实是那些有着丰富的项目经验的但考试能力较差的人，其他人建议只参考参考。</p>
+<span id="more"></span>
+
 <h1 id="择校"><a href="#择校" class="headerlink" title="择校"></a>择校</h1><p>关于择校我就一句话：“<strong>选择大于努力</strong>”。</p>
 <p>谁都想上985, 211。但是盲目的头铁换来的只会是续费一年的备考。各位量力而行，该跳车就跳车。</p>
 <p>我备考的时候首先就是深圳大学，号称“清北深”，毕业就进腾讯。结果导致这几年的分数爆炸。在暑假期间，我果断跳车选择了南方科技大学。</p>
@@ -102,6 +104,9 @@
 <p>我说自己啥本事掂量掂量好不，项目、论文、竞赛、初试成绩总得占一样吧，啥都没有也来凑热闹……最无语的是让他慎重考虑还不听，说自己咋了咋了，说的我在故意劝退一样，我都上岸了劝退你们干嘛，忠言逆耳啊。</p>
 <p>家人们，谁懂啊，无语死了。</p>
 ]]></content>
+      <categories>
+        <category>经验心得</category>
+      </categories>
       <tags>
         <tag>经验心得</tag>
       </tags>
@@ -112,6 +117,8 @@
     <content><![CDATA[<h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>遗传算法（Genetic Algorithm，简称GA）起源于对生物系统所进行的计算机模拟研究，是一种<strong>随机全局搜索优化</strong>方法，它模拟了自然选择和遗传中发生的<strong>复制</strong>、<strong>交叉</strong>(crossover)和变异(mutation)等现象，从任一初始种群（Population）出发，通过随机选择、交叉和变异操作，产生一群更适合环境的个体，使群体进化到搜索空间中越来越好的区域，这样一代一代不断繁衍进化，最后收敛到一群最适应环境的个体（Individual），从而求得问题的优质解。</p>
 <p>其主要特点是直接对结构对象进行操作，不存在求导和函数连续性的限定；具有内在的隐并行性和更好的全局寻优能力；采用概率化的寻优方法，不需要确定的规则就能自动获取和指导优化的搜索空间，自适应地调整搜索方向。</p>
 <p>遗传算法以一种群体中的所有个体为对象，并利用随机化技术指导对一个被编码的参数空间进行高效搜索。其中，选择、交叉和变异构成了遗传算法的遗传操作；参数编码、初始群体的设定、适应度函数的设计、遗传操作设计、控制参数设定五个要素组成了遗传算法的核心内容。</p>
+<span id="more"></span>
+
 <h2 id="相关概念"><a href="#相关概念" class="headerlink" title="相关概念"></a>相关概念</h2><h3 id="编码"><a href="#编码" class="headerlink" title="编码"></a>编码</h3><p>解空间中的解在遗传算法中的表示形式。从问题的解到基因型的映射称为编码，即把一个问题的可行解从其解空间转换到遗传算法的搜索空间的转换方法。遗传算法在进行搜索之前先将解空间的解表示成遗传算法的基因型串(也就是染色体)结构数据，这些串结构数据的不同组合就构成了不同的点。</p>
 <p>常见的编码方法有二进制编码：即组成染色体的基因序列是由二进制数表示，具有编码解码简单易用，交叉变异易于程序实现等特点。</p>
 <p>设某一参数的取值范围为$[U1,U2]$，我们用长度为$k$的二进制编码符号来表示该参数，则它总共产生$2^k$种不同的编码，可使参数编码时的对应关系：</p>
@@ -259,6 +266,9 @@
 <h4 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h4><figure class="highlight txt"><table><tr><td class="code"><pre><span class="line">北京	116.46 39.92</span><br><span class="line">天津 117.2 39.13</span><br><span class="line">上海 121.48 31.22</span><br><span class="line">重庆 106.54 29.59</span><br><span class="line">拉萨	91.11 29.97</span><br><span class="line">乌鲁木齐 87.68 43.77</span><br><span class="line">银川 106.27 38.47</span><br><span class="line">呼和浩特 111.65 40.82</span><br><span class="line">南宁	108.33 22.84</span><br><span class="line">哈尔滨 126.63 45.75</span><br><span class="line">长春 125.35 43.88</span><br><span class="line">沈阳 123.38 41.8</span><br><span class="line">石家庄 114.48 38.03</span><br><span class="line">太原	112.53 37.87</span><br><span class="line">西宁 101.74 36.56</span><br><span class="line">济南	117 36.65</span><br><span class="line">郑州	113.6 34.76</span><br><span class="line">南京 118.78 32.04</span><br><span class="line">合肥 117.27 31.86</span><br><span class="line">杭州 120.19 30.26</span><br><span class="line">福州 119.3 26.08</span><br><span class="line">南昌	115.89 28.68</span><br><span class="line">长沙	113 28.21</span><br><span class="line">武汉	114.31 30.52</span><br><span class="line">广州	113.23 23.16</span><br><span class="line">台北	121.5 25.05</span><br><span class="line">海口	110.35 20.02</span><br><span class="line">兰州 103.73 36.03</span><br><span class="line">西安 108.95 34.27</span><br><span class="line">成都 104.06 30.67</span><br><span class="line">贵阳 106.71 26.57</span><br><span class="line">昆明	102.73 25.04</span><br><span class="line">香港	114.1 22.2</span><br><span class="line">澳门 113.33 22.13</span><br></pre></td></tr></table></figure>
 
 ]]></content>
+      <categories>
+        <category>算法</category>
+      </categories>
       <tags>
         <tag>算法</tag>
       </tags>
